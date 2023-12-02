@@ -6,14 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 @SpringBootTest
-class InputServiceTests {
+class ResetCmdTests {
     @Autowired
     private InputService inputService;
     private final PrintStream standardOut = System.out;
@@ -32,20 +31,15 @@ class InputServiceTests {
         System.out.println(out);
     }
     @Test
-    void badFileInput() {
-        inputService.init("badfile_l");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Could not read file"));
+    void resetCmdNoDirs() {
+        inputService.init("./src/test/resources/ResetCmd/reset_with_no_dirs.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Dirs are empty! Could not reset."));
+    }
+    @Test
+    void resetCmdWithDirs() {
+        inputService.init("./src/test/resources/ResetCmd/reset_with_dirs.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("All directories removed with reset."));
     }
 
-    @Test
-    void goodFileInputBadJson() {
-        inputService.init("./src/test/resources/bad_json.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Could not read file"));
-    }
-    @Test
-    void goodFileInputGoodJson() {
-        inputService.init("./src/test/resources/good_json.txt");
-       Assertions.assertTrue(outputStreamCaptor.toString().contains("got json"));
-    }
 
 }

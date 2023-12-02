@@ -98,38 +98,29 @@ public class CmdService {
 
     public void reset() {
         if (this.contactList.isEmpty()) {
-            System.out.println("Contacts are empty!");
+            System.out.println("Dirs are empty! Could not reset.");
         } else {
             this.contactList.clear();
-            System.out.println("All directories removed");
+            System.out.println("All directories removed with reset.");
         }
     }
 
     public void list() {
         if (this.contactList.isEmpty()) {
-            System.out.println("Contacts are empty!");
+            System.out.println("Dirs are empty! Could not list");
         } else {
             for (Map.Entry<String, Address> contactMap : this.contactList.entrySet()) {
-                System.out.println(contactMap.getKey());
+                System.out.println("Found List Path: " + contactMap.getKey());
             }
         }
     }
 
     public void add(String dirName, String pwd, Contact contact) {
-        if(this.contactList.containsKey(dirName)) {
-            Address a = this.contactList.get(dirName);
-
-            if(!a.getPwd().equals(pwd)) {
-                System.out.println("pwd not right for adding contact to given dirname");
-                return;
-            }
-            if(a.getContacts().stream().anyMatch(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()))) {
-                System.out.println("Can't add contact - it already exists");
-            } else {
-                System.out.println("contact not found!");
-            }
+        if(!this.contactList.containsKey(dirName)) {
+            this.contactList.put(dirName, Address.builder().path(dirName).pwd(pwd).contacts(new ArrayList<>()).build());
+            System.out.println("Added dir: " + dirName);
         } else {
-            System.out.println("Dir name not found for removal: " + dirName);
+            System.out.println("Dir name already exists: " + dirName);
         }
     }
 

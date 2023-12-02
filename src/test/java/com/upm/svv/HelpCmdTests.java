@@ -6,14 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.DefaultApplicationArguments;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 @SpringBootTest
-class InputServiceTests {
+class HelpCmdTests {
     @Autowired
     private InputService inputService;
     private final PrintStream standardOut = System.out;
@@ -32,20 +31,10 @@ class InputServiceTests {
         System.out.println(out);
     }
     @Test
-    void badFileInput() {
-        inputService.init("badfile_l");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Could not read file"));
+    void helpCmd() {
+        inputService.init("./src/test/resources/HelpCmd/basic_help_cmd.txt");
+       Assertions.assertTrue(outputStreamCaptor.toString().contains("Help with no arguments. It should print all the possible commands the user can"));
     }
 
-    @Test
-    void goodFileInputBadJson() {
-        inputService.init("./src/test/resources/bad_json.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Could not read file"));
-    }
-    @Test
-    void goodFileInputGoodJson() {
-        inputService.init("./src/test/resources/good_json.txt");
-       Assertions.assertTrue(outputStreamCaptor.toString().contains("got json"));
-    }
 
 }

@@ -58,44 +58,19 @@ public class InputService {
             return;
         }
         switch (cmd.getCmd()) {
-            case "help":
-                cmdService.help();
-                break;
-            case "create":
-                cmdService.create(cmd.getDirName());
-                break;
-            case "destroy":
-                cmdService.destroy(cmd.getDirName());
-                break;
-            case "lock":
-                cmdService.lock(cmd.getDirName(), cmd.getPwd());
-                break;
-            case "unlock":
-                cmdService.unlock(cmd.getDirName(), cmd.getPwd());
-                break;
-            case "add":
-                cmdService.add(cmd.getDirName(), cmd.getPwd(), cmd.getContact());
-                break;
-            case "remove":
-                cmdService.remove(cmd.getDirName(), cmd.getPwd(), cmd.getContact());
-                break;
-            case "modify":
-                cmdService.modify(cmd.getDirName(), cmd.getPwd(), cmd.getContact());
-                break;
-            case "search":
-                cmdService.search(cmd.getPattern(), cmd.getDirName(), cmd.getPwd());
-                break;
-            case "reset":
-                cmdService.reset();
-                break;
-            case "list":
-                cmdService.list();
-                break;
-            case "display":
-                cmdService.display(cmd.getDirName(), cmd.getPwd());
-                break;
-                default:
-                    System.out.println("Unrecognized command: " + cmd);
+            case "help" -> cmdService.help();
+            case "create" -> cmdService.create(cmd.getDirName());
+            case "destroy" -> cmdService.destroy(cmd.getDirName());
+            case "lock" -> cmdService.lock(cmd.getDirName(), cmd.getPwd());
+            case "unlock" -> cmdService.unlock(cmd.getDirName(), cmd.getPwd());
+            case "add" -> cmdService.add(cmd.getDirName(), cmd.getPwd(), cmd.getContact());
+            case "remove" -> cmdService.remove(cmd.getDirName(), cmd.getPwd(), cmd.getContact());
+            case "modify" -> cmdService.modify(cmd.getDirName(), cmd.getPwd(), cmd.getContact());
+            case "search" -> cmdService.search(cmd.getPattern(), cmd.getDirName(), cmd.getPwd());
+            case "reset" -> cmdService.reset();
+            case "list" -> cmdService.list();
+            case "display" -> cmdService.display(cmd.getDirName(), cmd.getPwd());
+            default -> System.out.println("Unrecognized command: " + cmd);
         }
         System.out.println("-------- END COMMAND " + cmd.getCmd() + " -----------");
     }
