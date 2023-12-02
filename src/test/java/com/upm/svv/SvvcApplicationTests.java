@@ -1,0 +1,13 @@
+package com.upm.svv;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class SvvcApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
