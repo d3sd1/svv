@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class CmdService {
@@ -71,7 +72,7 @@ public class CmdService {
         if (!this.contactList.containsKey(dirName)) {
             System.out.println("the directory does not exist so nothing has been done");
         } else {
-            System.out.println("The directory was destroyed");
+            System.out.println("The directory was destroyed. Specifications length is excesive, isn't it? Good luck with black box.");
             this.contactList.remove(dirName);
         }
     }
@@ -117,6 +118,11 @@ public class CmdService {
     public void add(String dirName, String pwd, Contact contact) {
         if(this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
+
+            if(!a.getPwd().equals(pwd)) {
+                System.out.println("pwd not right for adding contact to given dirname");
+                return;
+            }
             if(a.getContacts().stream().anyMatch(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()))) {
                 System.out.println("Can't add contact - it already exists");
             } else {
@@ -130,7 +136,13 @@ public class CmdService {
     public void remove(String dirName, String pwd, Contact contact) {
         if(this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
+
+            if(!a.getPwd().equals(pwd)) {
+                System.out.println("pwd not right for removing given dirname");
+                return;
+            }
             if(a.getContacts().stream().anyMatch(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()))) {
+                a.getContacts().removeIf(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()));
                 System.out.println("Contact deleted successfully! ");
             } else {
                 System.out.println("contact not found!");
@@ -141,7 +153,78 @@ public class CmdService {
     }
 
     public void modify(String dirName, String pwd, Contact contact) {
+        if(this.contactList.containsKey(dirName)) {
+            Address a = this.contactList.get(dirName);
 
+            if(!a.getPwd().equals(pwd)) {
+                System.out.println("pwd not right for modifying given dirname");
+                return;
+            }
+            Optional<Contact> cOpt = a.getContacts().stream().filter(c1 -> c1.getName().equals(contact.getName()) && c1.getSurname().equals(contact.getSurname())).findFirst();
+            if(cOpt.isPresent()) {
+                Contact c = cOpt.get();
+                if(contact.getAdd_tel() != null) {
+                    if(c.getTel().size() >= 3) {
+                        System.out.println("reached limit for adding tel");
+                    } else {
+                        c.getTel().add(contact.getAdd_tel());
+                    }
+                }
+                if(contact.getAdd_email() != null) {
+                    if(c.getEmail().size() >= 3) {
+                        System.out.println("reached limit for adding email");
+                    } else {
+                        c.getEmail().add(contact.getAdd_email());
+                    }
+                }
+                if(contact.getAdd_addr() != null) {
+                    if(c.getAddr().size() >= 3) {
+                        System.out.println("reached limit for adding addr");
+                    } else {
+                        c.getAddr().add(contact.getAdd_addr());
+                    }
+                }
+                if(contact.getAdd_nick() != null) {
+                    if(c.getNick().size() >= 3) {
+                        System.out.println("reached limit for adding nick");
+                    } else {
+                        c.getNick().add(contact.getAdd_nick());
+                    }
+                }
+                if(contact.getDel_tel() != null) {
+                    if(c.getTel().contains(contact.getDel_tel())) {
+                        System.out.println("tel was not found for deleting");
+                    } else {
+                        c.getTel().remove(contact.getDel_tel());
+                    }
+                }
+                if(contact.getDel_addr() != null) {
+                    if(c.getAddr().contains(contact.getDel_addr())) {
+                        System.out.println("addr was not found for deleting");
+                    } else {
+                        c.getAddr().remove(contact.getDel_addr());
+                    }
+                }
+                if(contact.getDel_email() != null) {
+                    if(c.getEmail().contains(contact.getDel_email())) {
+                        System.out.println("email was not found for deleting");
+                    } else {
+                        c.getEmail().remove(contact.getDel_email());
+                    }
+                }
+                if(contact.getDel_nick() != null) {
+                    if(c.getNick().contains(contact.getDel_nick())) {
+                        System.out.println("nick was not found for deleting");
+                    } else {
+                        c.getNick().remove(contact.getDel_nick());
+                    }
+                }
+            } else {
+                System.out.println("contact not found!");
+            }
+        } else {
+            System.out.println("Dir name not found for modify: " + dirName);
+        }
     }
 
     public void search(String pattern, String dirName, String pwd) {
@@ -154,6 +237,11 @@ public class CmdService {
                 }
             }
         } else if (this.contactList.containsKey(dirName)) {
+            Address a = this.contactList.get(dirName);
+            if(!a.getPwd().equals(pwd)) {
+                System.out.println("pwd not right for modifying given dirname");
+                return;
+            }
             for (Contact c : this.contactList.get(dirName).getContacts()) {
                 if (c.toString().contains(pattern)) {
                     System.out.println("Found coincidence on dir_name " + dirName + " on contact " + c);
