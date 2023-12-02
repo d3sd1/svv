@@ -19,11 +19,10 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class InputService  implements ApplicationRunner {
+public class InputService {
     private final CmdService cmdService;
 
-    @Override
-    public void run( ApplicationArguments args )
+    public void init(String file)
     {
         System.out.println("At first...");
         System.out.println("--------");
@@ -33,7 +32,6 @@ public class InputService  implements ApplicationRunner {
         System.out.println("As you can see, the input is a .txt text file (not plain text but json, which is also text ;) ) with case sensitive decoding. Also, "
                 + "each parameter is separated by a space!!");
         try {
-            String file = args.getSourceArgs()[0];
             System.out.println("Using file: " + file);
             String json =  Files.readAllLines(Paths.get(file)).stream()
                                    .map(String::valueOf)
@@ -47,6 +45,7 @@ public class InputService  implements ApplicationRunner {
                 this.executeCommand(cmd);
             }
         } catch (Exception e) {
+            e.printStackTrace();
             System.out.println("Could not read file " + e.getMessage());
         }
     }
