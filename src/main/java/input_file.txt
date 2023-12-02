@@ -1,0 +1,420 @@
+[
+  {
+    "cmd": ""
+  },
+  {
+    "cmd": null
+  },
+  {
+    "cmd": "help"
+  },
+  {
+    "cmd": "create"
+  },
+  {
+    "cmd": "create",
+    "dirName": null
+  },
+  {
+    "cmd": "create",
+    "dirName": ""
+  },
+  {
+    "cmd": "create",
+    "dirName": "fakePath"
+  },
+  {
+    "cmd": "create",
+    "dirName": "usemepath"
+  },
+  {
+    "cmd": "destroy",
+    "dirName": null
+  },
+  {
+    "cmd": "destroy",
+    "dirName": ""
+  },
+  {
+    "cmd": "destroy",
+    "dirName": "fakePath"
+  },
+  {
+    "cmd": "destroy",
+    "dirName": "fakePath"
+  },
+  {
+    "cmd": "lock"
+  },
+  {
+    "cmd": "lock",
+    "dirName": "fakePath"
+  },
+  {
+    "cmd": "lock",
+    "dirName": "fakePath",
+    "pwd": ""
+  },
+  {
+    "cmd": "lock",
+    "dirName": "fakePath",
+    "pwd": null
+  },
+  {
+    "cmd": "lock",
+    "dirName": "fakePath",
+    "pwd": "invalidpwd"
+  },
+  {
+    "cmd": "lock",
+    "dirName": "usemepath",
+    "pwd": "validpwd"
+  },
+  {
+    "cmd": "unlock"
+  },
+  {
+    "cmd": "unlock",
+    "dirName": "fakePath"
+  },
+  {
+    "cmd": "unlock",
+    "dirName": "fakePath",
+    "pwd": ""
+  },
+  {
+    "cmd": "unlock",
+    "dirName": "fakePath",
+    "pwd": null
+  },
+  {
+    "cmd": "unlock",
+    "dirName": "fakePath",
+    "pwd": "invalidpwd"
+  },
+  {
+    "cmd": "unlock",
+    "dirName": "usemepath",
+    "pwd": "validpwd"
+  },
+  {
+    "cmd": "add"
+  },
+  {
+    "cmd": "add",
+    "dirName": "fakePath"
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath"
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": null
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": null
+  },
+  {
+    "cmd": "lock",
+    "dirName": "usemepath",
+    "pwd": "validpwd"
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "pwd": "validpwd",
+    "contact": null
+  },
+  {
+    "cmd": "unlock",
+    "dirName": "usemepath",
+    "pwd": "validpwd"
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+      "invalidparams": null
+    }
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": null,
+      "name": null,
+      "tel": null,
+      "email": null,
+      "addr": null,
+      "nick": null
+    }
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": null,
+      "tel": null,
+      "email": null,
+      "addr": null,
+      "nick": null
+    }
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": 
+      {
+        "surname": "jones",
+        "name": "paco",
+        "tel": null,
+        "email": null,
+        "addr": null,
+        "nick": null
+      }
+    
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": 
+      {
+        "surname": "jones",
+        "name": "paco",
+        "tel": null,
+        "email": null,
+        "addr": null,
+        "nick": null
+      }
+    
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "tel": "+34 uwontgetmyphone",
+      "email": null,
+      "addr": null,
+      "nick": null
+    }
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "tel": "+34 uwontgetmyphone",
+      "email": "a@a.pepe",
+      "addr": null,
+      "nick": null
+    }
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "tel": "+34 uwontgetmyphone",
+      "email": "a@a.pepe",
+      "addr": "jojo@lmao.es",
+      "nick": null
+    }
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "tel": "+34 uwontgetmyphone",
+      "email": "a@a.pepe",
+      "addr": "jojo@lmao.es",
+      "nick": "JOOONESSSS"
+    }
+  },
+  {
+    "cmd": "remove"
+  },
+  {
+    "cmd": "remove",
+    "dirName": "usemepath"
+  },
+  {
+    "cmd": "remove",
+    "dirName": "usemepath",
+    "contact": null
+  },
+  {
+    "cmd": "remove",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": null,
+      "name": null
+    }
+  },
+  {
+    "cmd": "remove",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": null
+    }
+  },
+  {
+    "cmd": "remove",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": null,
+      "name": "paco"
+    }
+  },
+  {
+    "cmd": "remove",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco"
+    }
+  },
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "tel": "+34 uwontgetmyphone",
+      "email": "a@a.pepe",
+      "addr": "jojo@lmao.es",
+      "nick": "JOOONESSSS"
+    }
+  },
+  {
+    "cmd": "modify",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "add_tel": "+34 uwontgetmyphone",
+      "del_tel": "a@a.pepe",
+      "add_email": "jojo@lmao.es",
+      "del_email": "JOOONESSSS",
+      "add_addr": "JOOONESSSS",
+      "del_addr": "JOOONESSSS",
+      "add_nick": "JOOONESSSS",
+      "del_nick": "JOOONESSSS"
+    }
+  },
+  {
+    "cmd": "modify",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "add_tel": "+34 uwontgetmyphone",
+      "del_tel": "a@a.pepe",
+      "add_email": "jojo@lmao.es",
+      "del_email": null,
+      "add_addr": "JOOONESSSS",
+      "del_addr": "JOOONESSSS",
+      "add_nick": null,
+      "del_nick": "JOOONESSSS"
+    }
+  },
+  {
+    "cmd": "modify",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "add_tel": "+34 uwontgetmyphone",
+      "del_tel": "a@a.pepe",
+      "add_email": "jojo@lmao.es",
+      "del_email": null,
+      "add_addr": null,
+      "del_addr": null,
+      "add_nick": null,
+      "del_nick": "JOOONESSSS"
+    }
+  },
+  {
+    "cmd": "modify",
+    "dirName": "usemepath",
+    "contact": {
+      "surname": "jones",
+      "name": "paco",
+      "add_tel": "+34 uwontgetmyphone",
+      "del_tel": "a@a.pepe",
+      "add_email": "jojo@lmao.es",
+      "del_email": null,
+      "add_addr": null,
+      "del_addr": null,
+      "add_nick": null,
+      "del_nick": null
+    }
+  },
+  {
+    "cmd": "search",
+    "dirName": "usemepath",
+    "pattern": null,
+    "pwd": null
+  },
+  {
+    "cmd": "search",
+    "dirName": "fakepath",
+    "pattern": null,
+    "pwd": null
+  },
+  {
+    "cmd": "search",
+    "dirName": null,
+    "pattern": "f",
+    "pwd": null
+  },
+  {
+    "cmd": "search",
+    "dirName": "usemepath",
+    "pattern": "f",
+    "pwd": null
+  },
+  {
+    "cmd": "lock",
+    "dirName": "usemepath",
+    "pwd": "validpwd"
+  },
+  {
+    "cmd": "search",
+    "dirName": "usemepath",
+    "pattern": "f",
+    "pwd": null
+  },
+  {
+    "cmd": "search",
+    "dirName": "usemepath",
+    "pattern": "f",
+    "pwd": "validpwd"
+  },
+  {
+    "cmd": "reset"
+  },
+  {
+    "cmd": "display"
+  },
+  {
+    "cmd": "display",
+    "dirName": null
+  },
+  {
+    "cmd": "display",
+    "dirName": "usemepath",
+    "pwd": "validpwd"
+  }
+]
