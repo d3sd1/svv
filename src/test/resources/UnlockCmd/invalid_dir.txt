@@ -5,6 +5,6 @@
     "contact": null
   },
   {
-    "cmd": "lock"
+    "cmd": "unlock"
   }
 ]

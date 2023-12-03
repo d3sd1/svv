@@ -79,7 +79,7 @@ public class CmdService {
 
     public void lock(String dirName, String pwd) {
         if (!this.contactList.containsKey(dirName) || this.contactList.get(dirName).getPwd() != null) {
-            System.out.println("the directory does not exist or it already has no pwd");
+            System.out.println("the directory does not exist or it already has a pwd");
         } else {
             System.out.println("The directory was protected");
             this.contactList.get(dirName).setPwd(pwd);
