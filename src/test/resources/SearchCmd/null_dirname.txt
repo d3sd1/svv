@@ -1,0 +1,6 @@
+[
+   {
+     "cmd": "search",
+     "pattern": "a",
+   }
+ ]

@@ -1,0 +1,7 @@
+[
+   {
+     "cmd": "search",
+     "pattern": "a",
+     "dirName": ""
+   }
+ ]

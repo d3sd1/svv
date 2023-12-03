@@ -1,0 +1,14 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "testme",
+    "contact": {
+        name: "Paco",
+        surnames: "Jones"
+    }
+  },
+   {
+     "cmd": "search",
+     "pattern": "a",
+   }
+ ]
