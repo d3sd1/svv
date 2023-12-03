@@ -6,7 +6,7 @@
         "name":"Paco2",
         "surname": "Jones3"
     },
-    "pwd": null
+    "pwd": ""
   },
    {
      "cmd": "modify",
@@ -14,7 +14,7 @@
     "pwd": "",
 
     "contact": {
-        "name":"Paco2",
+        "name":"Paco",
         "surname": "Jones"
     }
    }

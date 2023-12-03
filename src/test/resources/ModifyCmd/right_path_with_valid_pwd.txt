@@ -3,19 +3,20 @@
     "cmd": "add",
     "dirName": "usemepath",
     "contact": {
-        "name":"Paco2",
-        "surname": "Jones3"
+        "name":"Paco",
+        "surname": "Jones"
     },
-    "pwd": ""
+    "pwd": "1234"
   },
    {
-     "cmd": "modify",
+    "cmd": "modify",
     "dirName": "usemepath",
-    "pwd": "",
+    "pwd": "1234",
 
     "contact": {
         "name":"Paco",
-        "surname": "Jones3"
+        "surname": "Jones",
+         "add_addr": "newtel"
     }
    }
  ]

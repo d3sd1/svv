@@ -166,11 +166,11 @@ public class CmdService {
         if (this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
 
-            if (!a.getPwd().equals(pwd)) {
+            if (a.getPwd() != null && !a.getPwd().equals(pwd)) {
                 System.out.println("pwd not right for modifying given dirname");
                 return;
             }
-            Optional<Contact> cOpt = a.getContacts().stream().filter(c1 -> contact.getName() != null && c1.getName().equals(contact.getName()) && contact.getSurname() != null && c1.getSurname().equals(contact.getSurname())).findFirst();
+            Optional<Contact> cOpt = a.getContacts().stream().filter(c1 -> c1.getName().equals(contact.getName()) && c1.getSurname().equals(contact.getSurname())).findFirst();
             if (cOpt.isPresent()) {
                 System.out.println("contact found! begin modifications (if needed)");
                 Contact c = cOpt.get();

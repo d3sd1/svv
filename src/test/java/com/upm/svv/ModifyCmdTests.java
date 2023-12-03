@@ -174,16 +174,29 @@ class ModifyCmdTests {
         Assertions.assertTrue(outputStreamCaptor.toString().contains("nick was not found for deleting"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
+    //onwards
+    @Test
+    void modifyCmdRightPathWithContactNullPwd() {
+        inputService.init("./src/test/resources/ModifyCmd/right_path_with_null_pwd.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("pwd not right for modifying given dirname"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+    }
     @Test
     void modifyCmdRightPathWithContactInvalidPwd() {
-        inputService.init("./src/test/resources/ModifyCmd/right_path_with_valid_pwd.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("nick was not found for deleting"));
+        inputService.init("./src/test/resources/ModifyCmd/right_path_with_invalid_pwd.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("pwd not right for modifying given dirname"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
     @Test
     void modifyCmdRightPathWithContactValidPwd() {
-        inputService.init("./src/test/resources/ModifyCmd/right_path_with_invalid_pwd.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("nick was not found for deleting"));
+        inputService.init("./src/test/resources/ModifyCmd/right_path_with_valid_pwd.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("contact found! begin modifications (if needed)"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+    }
+    @Test
+    void modifyCmdRightPathWithInvalidContactFields() {
+        inputService.init("./src/test/resources/ModifyCmd/right_path_with_invalid_contact_fields.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("contact not found!"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
 }
