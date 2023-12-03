@@ -1,0 +1,7 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": null
+  }
+]
