@@ -1,6 +1,6 @@
 [
   {
-    "cmd": "add",
+    "cmd": "create",
     "dirName": "usemepath",
     "contact": null
   }

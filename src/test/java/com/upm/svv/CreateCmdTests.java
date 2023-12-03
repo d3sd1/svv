@@ -32,27 +32,25 @@ class CreateCmdTests {
     }
 
     @Test
-    @Disabled
-        //TODO
+    @Disabled //TODO
     void createCmdNoDirShouldFail() {
         inputService.init("./src/test/resources/CreateCmd/create_no_dir.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Invalid name for pathname!"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("The directory already exists and nothing has been done"));
         Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
 
     @Test
-    @Disabled
-        //TODO
+    @Disabled //TODO
     void createCmdEmptyDirShouldFail() {
         inputService.init("./src/test/resources/CreateCmd/create_empty_dir.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Invalid name for pathname!"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("The directory already exists and nothing has been done"));
         Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
 
     @Test
     void createCmdNewDirShouldOK() {
         inputService.init("./src/test/resources/CreateCmd/create_new_dir.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Added dir: usemepath"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("The directory was created"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
         Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
     }
@@ -60,7 +58,7 @@ class CreateCmdTests {
     @Test
     void createCmdDuplicatedDirShouldFail() {
         inputService.init("./src/test/resources/CreateCmd/create_duplicated_dir.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Dir name already exists: usemepath"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("The directory already exists and nothing has been done"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
         Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
     }

@@ -1,11 +1,11 @@
 [
   {
-    "cmd": "add",
+    "cmd": "create",
     "dirName": "usemepath",
     "contact": null
   },
   {
-    "cmd": "add",
+    "cmd": "create",
     "dirName": "usemepath",
     "contact": null
   }

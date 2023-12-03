@@ -1,5 +1,5 @@
 [
   {
-    "cmd": "add"
+    "cmd": "create"
   }
 ]
