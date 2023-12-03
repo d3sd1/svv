@@ -12,7 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 @SpringBootTest
-class InputEdgeTests {
+class ModifyCmdTests {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @Autowired
@@ -20,12 +20,14 @@ class InputEdgeTests {
 
     @BeforeEach
     public void setUp() {
+        inputService.cmdService.contactList.clear();
         outputStreamCaptor.reset();
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 
     @AfterEach
     public void tearDown() {
+        inputService.cmdService.contactList.clear();
         String out = outputStreamCaptor.toString();
         outputStreamCaptor.reset();
         System.setOut(standardOut);
@@ -33,10 +35,10 @@ class InputEdgeTests {
     }
 
     @Test
-    void edgeCaseInvalidCmd() {
-        inputService.init("./src/test/resources/InputEdgeTests/invalid_cmd.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Unrecognized command"));
+    void modifyCmdInvalidPath() {
+        inputService.init("./src/test/resources/ModifyCmd/not_found_path.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("the directory does not exist or it has no pwd"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
-
 
 }

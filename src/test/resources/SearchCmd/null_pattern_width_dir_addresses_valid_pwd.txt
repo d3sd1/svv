@@ -1,0 +1,16 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "testme",
+    "pwd": "1234",
+    "contact": {
+        "name":"Paco2",
+        "surname": "Jones3"
+    }
+  },
+   {
+     "cmd": "search",
+    "dirName": "testme",
+    "pwd": "1234"
+   }
+ ]

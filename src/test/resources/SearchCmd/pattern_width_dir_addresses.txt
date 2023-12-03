@@ -3,12 +3,13 @@
     "cmd": "add",
     "dirName": "testme",
     "contact": {
-        name: "Paco",
-        surname: "Jones"
+        "name":"Paco2",
+        "surname": "Jones3"
     }
   },
    {
      "cmd": "search",
-     "pattern": "a",
+    "dirName": "testme",
+    "pattern": "a"
    }
  ]

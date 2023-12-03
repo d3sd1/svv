@@ -2,6 +2,7 @@
   {
     "cmd": "add",
     "dirName": "usemepath",
+    "pwd": "1234",
     "contact": null
   },
   {

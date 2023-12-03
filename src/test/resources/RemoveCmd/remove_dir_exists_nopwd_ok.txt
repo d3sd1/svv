@@ -4,7 +4,7 @@
     "dirName": "testme",
     "contact": {
         "name":"Paco",
-        "surnames": "Jones"
+        "surname": "Jones"
     }
   },
   {
@@ -12,7 +12,7 @@
     "dirName": "testme",
     "contact": {
         "name":"Paco",
-        "surnames": "Jones"
+        "surname": "Jones"
     }
   }
 ]

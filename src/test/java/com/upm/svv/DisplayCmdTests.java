@@ -79,6 +79,7 @@ class DisplayCmdTests {
         inputService.init("./src/test/resources/DisplayCmd/display_args_with_dir_valid_dir_wrong_pwd.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Invalid password for dir usemepath"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+        Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
         Assertions.assertEquals(inputService.cmdService.contactList.get("usemepath").getPwd(), "1234");
     }
 

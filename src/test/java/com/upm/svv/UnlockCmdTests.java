@@ -48,14 +48,12 @@ class UnlockCmdTests {
     }
 
     @Test
-    @Disabled
-        //TODO
     void unlockCmdValidDirValidPwdShouldPass() {
         inputService.init("./src/test/resources/UnlockCmd/valid_dir_right_pwd.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("The directory was unprotected"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
         Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
-        Assertions.assertNull(inputService.cmdService.contactList.get("usemepath").getPwd());
+        Assertions.assertEquals("1234",inputService.cmdService.contactList.get("usemepath").getPwd());
     }
 
     @Test

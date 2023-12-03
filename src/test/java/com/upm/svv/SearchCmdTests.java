@@ -32,33 +32,60 @@ class SearchCmdTests {
     }
 
     @Test
-    @Disabled //TODO
-    void searchCmdEmptyPattern() {
-        inputService.init("./src/test/resources/SearchCmd/empty_pattern.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("No coincidences found"));
-        Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
-    }
-    @Test
-    @Disabled //TODO
-    void searchCmdNullPattern() {
-        inputService.init("./src/test/resources/SearchCmd/empty_pattern.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("No coincidences found"));
-        Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
-    }
-    @Test
-    @Disabled //TODO
     void searchCmdEmptyDirname() {
         inputService.init("./src/test/resources/SearchCmd/empty_dirname.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("No coincidences found"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("No coincidences or either dir was not found."));
         Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
+    }
+    @Test
+    void searchCmdNullDirname() {
+        inputService.init("./src/test/resources/SearchCmd/null_pattern.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Contactlist is empty!"));
+        Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
+    }
+    @Test
+    void searchCmdNullDirnameWithAddresses() {
+        inputService.init("./src/test/resources/SearchCmd/null_pattern_width_addresses.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Full list on dir_name testme on contact Contact(password=null, surname=Jones3, name=Paco2, tel=[], email=[], addr=[], nick=[], add_tel=null, del_tel=null, add_email=null, del_email=null, add_addr=null, del_addr=null, add_nick=null, del_nick=null)"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+    }
+    @Test
+    void searchCmdNullPatternWithDirNameWithAddressesInvalidPwd() {
+        inputService.init("./src/test/resources/SearchCmd/null_pattern_width_dir_addresses.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("pwd not right for modifying given dirname"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+    }
+    @Test
+    void searchCmdNullPatternWithDirNameWithAddressesNoPwd() {
+        inputService.init("./src/test/resources/SearchCmd/null_pattern_width_dir_addresses_no_pwd.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Given pattern is null. Can't search."));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
 
     @Test
-    @Disabled //TODO
-    void searchCmdNullDirname() {
-        inputService.init("./src/test/resources/SearchCmd/null_dirname.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("No coincidences found"));
-        Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
+    void searchCmdPatternWithDirNameWithAddressesNoPwd() {
+        inputService.init("./src/test/resources/SearchCmd/pattern_width_dir_addresses.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Found coincidence on dir_name testme on contact Contact(password=null, surname=Jones3, name=Paco2, tel=[], email=[], addr=[], nick=[], add_tel=null, del_tel=null, add_email=null, del_email=null, add_addr=null, del_addr=null, add_nick=null, del_nick=null)"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+    }
+
+    @Test
+    void searchCmdPatternWithDirNameNoCoincidences() {
+        inputService.init("./src/test/resources/SearchCmd/pattern_not_found_width_dir_addresses.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("This was not a coincidence."));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+    }
+    @Test
+    void searchCmdPatternWithDirInvalidPwd() {
+        inputService.init("./src/test/resources/SearchCmd/null_pattern_width_dir_addresses_invalid_pwd.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("pwd not right for modifying given dirname"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+    }
+    @Test
+    void searchCmdPatternWithDirValidPwd() {
+        inputService.init("./src/test/resources/SearchCmd/null_pattern_width_dir_addresses_valid_pwd.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Given pattern is null. Can't search."));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
 
 }

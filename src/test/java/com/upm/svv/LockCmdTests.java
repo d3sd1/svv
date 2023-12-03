@@ -48,11 +48,16 @@ class LockCmdTests {
     }
 
     @Test
-    @Disabled
-        //TODO
-    void lockCmdValidDirNullOrEmptyPwdShouldFail() {
+    void lockCmdValidDirNullPwdShouldFail() {
+        inputService.init("./src/test/resources/LockCmd/valid_dir_null_pwd.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("the directory must be protected with not null and non-empty and non-blank pwd"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+    }
+
+    @Test
+    void lockCmdValidDirEmptyPwdShouldFail() {
         inputService.init("./src/test/resources/LockCmd/valid_dir_empty_pwd.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("the directory must be protected with non-empty and non-blank pwd"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("the directory must be protected with not null and non-empty and non-blank pwd"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
 

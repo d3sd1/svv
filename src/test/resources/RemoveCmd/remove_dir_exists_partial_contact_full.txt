@@ -4,8 +4,8 @@
     "dirName": "testme",
     "pwd": "1234",
     "contact": {
-        "name":"Paco",
-        "surname": "Jones"
+        "name":"Paco2",
+        "surname": "Jones3"
     }
   },
   {

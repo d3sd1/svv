@@ -5,6 +5,7 @@
     "contact": null
   },
   {
-    "cmd": "lock"
+    "cmd": "lock",
+    "pwd": "1234"
   }
 ]

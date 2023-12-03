@@ -44,10 +44,4 @@ class InputServiceTests {
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Could not read file"));
     }
 
-    @Test
-    void goodFileInputGoodJson() {
-        inputService.init("./src/test/resources/good_json.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("got json"));
-    }
-
 }

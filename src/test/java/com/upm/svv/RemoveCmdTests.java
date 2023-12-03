@@ -46,19 +46,9 @@ class RemoveCmdTests {
     }
 
     @Test
-    @Disabled //TODO
     void removeCmdRightDirNotExistsShouldFail() {
         inputService.init("./src/test/resources/RemoveCmd/remove_dir_nopwd_notexists.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Dir name not found for removal:"));
-        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
-    }
-
-
-    @Test
-    @Disabled //TODO
-    void removeCmdRightDirExistsNoPwdShouldOK() {
-        inputService.init("./src/test/resources/RemoveCmd/remove_dir_exists_nopwd_ok.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Dir name not found for removal:"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("contact not found!"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
 
@@ -68,18 +58,29 @@ class RemoveCmdTests {
         Assertions.assertTrue(outputStreamCaptor.toString().contains("pwd not right for removing given dirname"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
     }
+
     @Test
-    void removeCmdRightDirExistsRightPwdWrongContactShouldFail() {
+    void removeCmdRightDirExistsRightPwdWrongContactShouldOK() {
         inputService.init("./src/test/resources/RemoveCmd/remove_dir_exists_rightwd_ok.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("contact not found!"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Contact deleted successfully!"));
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
-    }
-    @Test
-    @Disabled //TODO
-    void removeCmdRightDirExistsRightPwdShouldOK() {
-        inputService.init("./src/test/resources/RemoveCmd/remove_dir_exists_rightwd_ok.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Dir name not found for removal:"));
-        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+        Assertions.assertTrue(inputService.cmdService.contactList.get("testme").getContacts().isEmpty());
     }
 
+    //todo añadir al doc
+    @Test
+    void removeCmdRightDirExistsRightPwdWrongContactPartialNameShouldFail() {
+        inputService.init("./src/test/resources/RemoveCmd/remove_dir_exists_partial_contact.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("contact not found!"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+        Assertions.assertFalse(inputService.cmdService.contactList.get("testme").getContacts().isEmpty());
+    }
+    @Test
+    void removeCmdRightDirExistsRightPwdWrongContactPartialNameSurnamShouldFail() {
+        inputService.init("./src/test/resources/RemoveCmd/remove_dir_exists_partial_contact_full.txt");
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("contact not found!"));
+        Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
+        Assertions.assertFalse(inputService.cmdService.contactList.get("testme").getContacts().isEmpty());
+    }
+    //ttodo falta la combinacion e surname y name?
 }

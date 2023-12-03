@@ -1,5 +1,6 @@
 [
    {
-     "cmd": "search"
+     "cmd": "search",
+     "dirName": null
    }
  ]

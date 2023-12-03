@@ -60,7 +60,7 @@ public class CmdService {
     }
 
     public void create(String dirName) {
-        if(dirName == null || dirName.isEmpty()) {
+        if (dirName == null || dirName.isEmpty()) {
             System.out.println("Dir should not be null or empty.");
             return;
         }
@@ -82,6 +82,10 @@ public class CmdService {
     }
 
     public void lock(String dirName, String pwd) {
+        if (pwd == null || pwd.isEmpty()) {
+            System.out.println("the directory must be protected with not null and non-empty and non-blank pwd");
+            return;
+        }
         if (!this.contactList.containsKey(dirName) || this.contactList.get(dirName).getPwd() != null) {
             System.out.println("the directory does not exist or it already has a pwd");
         } else {
@@ -120,12 +124,16 @@ public class CmdService {
     }
 
     public void add(String dirName, String pwd, Contact contact) {
-        if(dirName == null || dirName.isEmpty()) {
+        if (dirName == null || dirName.isEmpty()) {
             System.out.println("Dir should not be null or empty.");
             return;
         }
         if (!this.contactList.containsKey(dirName)) {
-            this.contactList.put(dirName, Address.builder().path(dirName).pwd(pwd).contacts(new ArrayList<>()).build());
+            ArrayList<Contact> cList = new ArrayList<>();
+            if (contact != null) {
+                cList.add(contact);
+            }
+            this.contactList.put(dirName, Address.builder().path(dirName).pwd(pwd).contacts(cList).build());
             System.out.println("Added dir: " + dirName);
         } else {
             System.out.println("Dir name already exists: " + dirName);
@@ -136,12 +144,11 @@ public class CmdService {
         if (this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
 
-            if (!a.getPwd().equals(pwd)) {
+            if (a.getPwd() != null && !a.getPwd().equals(pwd)) {
                 System.out.println("pwd not right for removing given dirname");
                 return;
             }
-            if (a.getContacts().stream().anyMatch(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()))) {
-                a.getContacts().removeIf(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()));
+            if (a.getContacts().removeIf(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()))) {
                 System.out.println("Contact deleted successfully! ");
             } else {
                 System.out.println("contact not found!");
@@ -227,23 +234,30 @@ public class CmdService {
     }
 
     public void search(String pattern, String dirName, String pwd) {
-        if (dirName == null || dirName.isEmpty()) {
+        if (dirName == null) {
+            if (this.contactList.values().isEmpty()) {
+                System.out.println("Contactlist is empty!");
+            }
             for (Address a : this.contactList.values()) {
                 for (Contact c : a.getContacts()) {
-                    if (c.toString().contains(pattern)) {
-                        System.out.println("Found coincidence on dir_name " + dirName + " on contact " + c);
-                    }
+                    System.out.println("Full list on dir_name " + a.getPath() + " on contact " + c);
                 }
             }
         } else if (this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
-            if (!a.getPwd().equals(pwd)) {
+            if (a.getPwd() != null && !a.getPwd().equals(pwd)) {
                 System.out.println("pwd not right for modifying given dirname");
+                return;
+            }
+            if(pattern == null) {
+                System.out.println("Given pattern is null. Can't search.");
                 return;
             }
             for (Contact c : this.contactList.get(dirName).getContacts()) {
                 if (c.toString().contains(pattern)) {
                     System.out.println("Found coincidence on dir_name " + dirName + " on contact " + c);
+                } else {
+                    System.out.println("This was not a coincidence.");
                 }
             }
         } else {

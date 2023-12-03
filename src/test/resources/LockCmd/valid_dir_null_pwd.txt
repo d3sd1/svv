@@ -6,7 +6,6 @@
   },
   {
     "cmd": "lock",
-    "dirName": "usemepath",
-    "pwd": ""
+    "dirName": "usemepath"
   }
 ]
