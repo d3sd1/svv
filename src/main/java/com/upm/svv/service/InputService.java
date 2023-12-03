@@ -4,17 +4,11 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.upm.svv.model.Command;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,8 +16,7 @@ import java.util.stream.Collectors;
 public class InputService {
     public final CmdService cmdService;
 
-    public void init(String file)
-    {
+    public void init(String file) {
         System.out.println("At first...");
         System.out.println("--------");
         System.out.println("Input file is defined as a text file (.txt only). Lower and upper case is relevant, for instance,\n"
@@ -33,28 +26,26 @@ public class InputService {
                 + "each parameter is separated by a space!!");
         try {
             System.out.println("Using file: " + file);
-            String json =  Files.readAllLines(Paths.get(file)).stream()
-                                   .map(String::valueOf)
-                                   .collect(Collectors.joining(""));
+            String json = Files.readAllLines(Paths.get(file)).stream().map(String::valueOf).collect(Collectors.joining(""));
 
             System.out.println("got json " + json);
             Command[] commands = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false).readValue(json, Command[].class);
 
             System.out.println("parsed commands " + Arrays.toString(commands));
-            for(Command cmd:commands) {
+            for (Command cmd : commands) {
                 this.executeCommand(cmd);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             System.out.println("Could not read file " + e.getMessage());
         }
     }
 
     public void executeCommand(Command cmd) {
         System.out.println("-------- BEGIN COMMAND " + cmd.getCmd() + " -----------");
-        if(cmd.getCmd() == null || cmd.getCmd().isBlank()) {
+        if (cmd.getCmd() == null || cmd.getCmd().isBlank()) {
             System.out.println("You returning null command! Be a nice person and don't try to catch 'em all ;) ");
-            System.out.println("Found a bug in the code? Huh! Report it, we are prideful of this :)). You could try to put an hydrogen bomb over the code, maybe then it would fail. But I'd rather say it won't ");
+            System.out.println(
+                    "Found a bug in the code? Huh! Report it, we are prideful of this :)). You could try to put an hydrogen bomb over the code, maybe then it would fail. But I'd rather say it won't ");
             return;
         }
         switch (cmd.getCmd()) {

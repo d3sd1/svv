@@ -1,0 +1,18 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "testme",
+    "contact": {
+        "name":"Paco",
+        "surnames": "Jones"
+    }
+  },
+  {
+    "cmd": "remove",
+    "dirName": "testme",
+    "contact": {
+        "name":"Paco",
+        "surnames": "Jones"
+    }
+  }
+]

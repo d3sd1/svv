@@ -10,17 +10,18 @@ import java.io.PrintStream;
 
 @SpringBootTest
 class CreateCmdTests {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @Autowired
     private InputService inputService;
-    private final PrintStream standardOut = System.out;
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @BeforeEach
     public void setUp() {
         inputService.cmdService.contactList.clear();
         outputStreamCaptor.reset();
         System.setOut(new PrintStream(outputStreamCaptor));
     }
+
     @AfterEach
     public void tearDown() {
         inputService.cmdService.contactList.clear();
@@ -29,20 +30,25 @@ class CreateCmdTests {
         System.setOut(standardOut);
         System.out.println(out);
     }
+
     @Test
-    @Disabled //TODO
+    @Disabled
+        //TODO
     void createCmdNoDirShouldFail() {
         inputService.init("./src/test/resources/CreateCmd/create_no_dir.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Invalid name for pathname!"));
         Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
+
     @Test
-    @Disabled //TODO
+    @Disabled
+        //TODO
     void createCmdEmptyDirShouldFail() {
         inputService.init("./src/test/resources/CreateCmd/create_empty_dir.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Invalid name for pathname!"));
         Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
+
     @Test
     void createCmdNewDirShouldOK() {
         inputService.init("./src/test/resources/CreateCmd/create_new_dir.txt");
@@ -50,6 +56,7 @@ class CreateCmdTests {
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
         Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
     }
+
     @Test
     void createCmdDuplicatedDirShouldFail() {
         inputService.init("./src/test/resources/CreateCmd/create_duplicated_dir.txt");

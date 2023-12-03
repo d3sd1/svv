@@ -1,0 +1,20 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "testme",
+    "pwd": "1234",
+    "contact": {
+        "name":"Paco",
+        "surnames": "Jones"
+    }
+  },
+  {
+    "cmd": "remove",
+    "pwd": "1234",
+    "dirName": "testme",
+    "contact": {
+        "name":"Nipu",
+        "surnames": "Jones"
+    }
+  }
+]

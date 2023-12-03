@@ -13,17 +13,18 @@ import java.io.PrintStream;
 
 @SpringBootTest
 class DisplayCmdTests {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @Autowired
     private InputService inputService;
-    private final PrintStream standardOut = System.out;
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @BeforeEach
     public void setUp() {
         inputService.cmdService.contactList.clear();
         outputStreamCaptor.reset();
         System.setOut(new PrintStream(outputStreamCaptor));
     }
+
     @AfterEach
     public void tearDown() {
         inputService.cmdService.contactList.clear();
@@ -32,12 +33,14 @@ class DisplayCmdTests {
         System.setOut(standardOut);
         System.out.println(out);
     }
+
     @Test
     void displayCmdNoArgsNoPwd() {
         inputService.init("./src/test/resources/DisplayCmd/display_no_args_no_pwd.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Addresses and contacts are empty!"));
         Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
+
     @Test
     void displayCmdNoArgsWithPwd() {
         inputService.init("./src/test/resources/DisplayCmd/display_no_args_with_pwd.txt");
@@ -53,6 +56,7 @@ class DisplayCmdTests {
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
         Assertions.assertNull(inputService.cmdService.contactList.get("usemepath").getPwd());
     }
+
     @Test
     void displayCmdArgsWithDirInvalidDirWithoutPwd() {
         inputService.init("./src/test/resources/DisplayCmd/display_args_with_dir_invalid_dir.txt");
@@ -60,6 +64,7 @@ class DisplayCmdTests {
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
         Assertions.assertFalse(inputService.cmdService.contactList.containsKey("invalid_path"));
     }
+
     @Test
     void displayCmdArgsWithDirValidDirWithoutPwd() {
         inputService.init("./src/test/resources/DisplayCmd/display_args_with_dir_valid_dir_no_pwd.txt");
@@ -68,6 +73,7 @@ class DisplayCmdTests {
         Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
         Assertions.assertNull(inputService.cmdService.contactList.get("usemepath").getPwd());
     }
+
     @Test
     void displayCmdArgsWithDirValidDirWithWrongPwd() {
         inputService.init("./src/test/resources/DisplayCmd/display_args_with_dir_valid_dir_wrong_pwd.txt");
@@ -75,6 +81,7 @@ class DisplayCmdTests {
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
         Assertions.assertEquals(inputService.cmdService.contactList.get("usemepath").getPwd(), "1234");
     }
+
     @Test
     void displayCmdArgsWithDirValidDirWithRightPwd() {
         inputService.init("./src/test/resources/DisplayCmd/display_args_with_dir_valid_dir_right_pwd.txt");
@@ -83,6 +90,5 @@ class DisplayCmdTests {
         Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
         Assertions.assertEquals(inputService.cmdService.contactList.get("usemepath").getPwd(), "1234");
     }
-
 
 }

@@ -1,0 +1,9 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "testme"
+  },
+  {
+    "cmd": "remove"
+  }
+]

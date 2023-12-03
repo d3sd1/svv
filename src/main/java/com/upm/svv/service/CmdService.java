@@ -116,7 +116,7 @@ public class CmdService {
     }
 
     public void add(String dirName, String pwd, Contact contact) {
-        if(!this.contactList.containsKey(dirName)) {
+        if (!this.contactList.containsKey(dirName)) {
             this.contactList.put(dirName, Address.builder().path(dirName).pwd(pwd).contacts(new ArrayList<>()).build());
             System.out.println("Added dir: " + dirName);
         } else {
@@ -125,14 +125,14 @@ public class CmdService {
     }
 
     public void remove(String dirName, String pwd, Contact contact) {
-        if(this.contactList.containsKey(dirName)) {
+        if (this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
 
-            if(!a.getPwd().equals(pwd)) {
+            if (!a.getPwd().equals(pwd)) {
                 System.out.println("pwd not right for removing given dirname");
                 return;
             }
-            if(a.getContacts().stream().anyMatch(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()))) {
+            if (a.getContacts().stream().anyMatch(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()))) {
                 a.getContacts().removeIf(a2 -> a2.getName().equals(contact.getName()) && a2.getSurname().equals(contact.getSurname()));
                 System.out.println("Contact deleted successfully! ");
             } else {
@@ -144,67 +144,67 @@ public class CmdService {
     }
 
     public void modify(String dirName, String pwd, Contact contact) {
-        if(this.contactList.containsKey(dirName)) {
+        if (this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
 
-            if(!a.getPwd().equals(pwd)) {
+            if (!a.getPwd().equals(pwd)) {
                 System.out.println("pwd not right for modifying given dirname");
                 return;
             }
             Optional<Contact> cOpt = a.getContacts().stream().filter(c1 -> c1.getName().equals(contact.getName()) && c1.getSurname().equals(contact.getSurname())).findFirst();
-            if(cOpt.isPresent()) {
+            if (cOpt.isPresent()) {
                 Contact c = cOpt.get();
-                if(contact.getAdd_tel() != null) {
-                    if(c.getTel().size() >= 3) {
+                if (contact.getAdd_tel() != null) {
+                    if (c.getTel().size() >= 3) {
                         System.out.println("reached limit for adding tel");
                     } else {
                         c.getTel().add(contact.getAdd_tel());
                     }
                 }
-                if(contact.getAdd_email() != null) {
-                    if(c.getEmail().size() >= 3) {
+                if (contact.getAdd_email() != null) {
+                    if (c.getEmail().size() >= 3) {
                         System.out.println("reached limit for adding email");
                     } else {
                         c.getEmail().add(contact.getAdd_email());
                     }
                 }
-                if(contact.getAdd_addr() != null) {
-                    if(c.getAddr().size() >= 3) {
+                if (contact.getAdd_addr() != null) {
+                    if (c.getAddr().size() >= 3) {
                         System.out.println("reached limit for adding addr");
                     } else {
                         c.getAddr().add(contact.getAdd_addr());
                     }
                 }
-                if(contact.getAdd_nick() != null) {
-                    if(c.getNick().size() >= 3) {
+                if (contact.getAdd_nick() != null) {
+                    if (c.getNick().size() >= 3) {
                         System.out.println("reached limit for adding nick");
                     } else {
                         c.getNick().add(contact.getAdd_nick());
                     }
                 }
-                if(contact.getDel_tel() != null) {
-                    if(c.getTel().contains(contact.getDel_tel())) {
+                if (contact.getDel_tel() != null) {
+                    if (c.getTel().contains(contact.getDel_tel())) {
                         System.out.println("tel was not found for deleting");
                     } else {
                         c.getTel().remove(contact.getDel_tel());
                     }
                 }
-                if(contact.getDel_addr() != null) {
-                    if(c.getAddr().contains(contact.getDel_addr())) {
+                if (contact.getDel_addr() != null) {
+                    if (c.getAddr().contains(contact.getDel_addr())) {
                         System.out.println("addr was not found for deleting");
                     } else {
                         c.getAddr().remove(contact.getDel_addr());
                     }
                 }
-                if(contact.getDel_email() != null) {
-                    if(c.getEmail().contains(contact.getDel_email())) {
+                if (contact.getDel_email() != null) {
+                    if (c.getEmail().contains(contact.getDel_email())) {
                         System.out.println("email was not found for deleting");
                     } else {
                         c.getEmail().remove(contact.getDel_email());
                     }
                 }
-                if(contact.getDel_nick() != null) {
-                    if(c.getNick().contains(contact.getDel_nick())) {
+                if (contact.getDel_nick() != null) {
+                    if (c.getNick().contains(contact.getDel_nick())) {
                         System.out.println("nick was not found for deleting");
                     } else {
                         c.getNick().remove(contact.getDel_nick());
@@ -229,7 +229,7 @@ public class CmdService {
             }
         } else if (this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
-            if(!a.getPwd().equals(pwd)) {
+            if (!a.getPwd().equals(pwd)) {
                 System.out.println("pwd not right for modifying given dirname");
                 return;
             }

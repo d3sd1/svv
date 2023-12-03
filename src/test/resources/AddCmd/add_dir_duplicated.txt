@@ -1,0 +1,10 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "testme"
+  },
+  {
+    "cmd": "add",
+    "dirName": "testme"
+  }
+]

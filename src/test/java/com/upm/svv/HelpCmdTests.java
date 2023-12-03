@@ -13,16 +13,17 @@ import java.io.PrintStream;
 
 @SpringBootTest
 class HelpCmdTests {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @Autowired
     private InputService inputService;
-    private final PrintStream standardOut = System.out;
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @BeforeEach
     public void setUp() {
         outputStreamCaptor.reset();
         System.setOut(new PrintStream(outputStreamCaptor));
     }
+
     @AfterEach
     public void tearDown() {
         String out = outputStreamCaptor.toString();
@@ -30,11 +31,11 @@ class HelpCmdTests {
         System.setOut(standardOut);
         System.out.println(out);
     }
+
     @Test
     void helpCmd() {
         inputService.init("./src/test/resources/HelpCmd/basic_help_cmd.txt");
-       Assertions.assertTrue(outputStreamCaptor.toString().contains("Help with no arguments. It should print all the possible commands the user can"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Help with no arguments. It should print all the possible commands the user can"));
     }
-
 
 }

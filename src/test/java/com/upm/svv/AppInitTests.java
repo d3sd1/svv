@@ -12,11 +12,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 @SpringBootTest
-class ListCmdTests {
+class AppInitTests {
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
-    @Autowired
-    private InputService inputService;
 
     @BeforeEach
     public void setUp() {
@@ -33,17 +31,9 @@ class ListCmdTests {
     }
 
     @Test
-    void listCmdNoDirs() {
-        inputService.init("./src/test/resources/ListCmd/list_no_dirs_cmd.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Dirs are empty! Could not list"));
-        Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
-    }
-
-    @Test
-    void listCmdWithDirs() {
-        inputService.init("./src/test/resources/ListCmd/list_with_dirs_cmd.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("Found List Path: usemepath"));
-        Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
+    void badFileInputMain() {
+        SvvcApplication.main(new String[] {});
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("No args provided (ignore this during testing)"));
     }
 
 }

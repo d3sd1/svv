@@ -13,17 +13,18 @@ import java.io.PrintStream;
 
 @SpringBootTest
 class DestroyCmdTests {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @Autowired
     private InputService inputService;
-    private final PrintStream standardOut = System.out;
 
-    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
     @BeforeEach
     public void setUp() {
         inputService.cmdService.contactList.clear();
         outputStreamCaptor.reset();
         System.setOut(new PrintStream(outputStreamCaptor));
     }
+
     @AfterEach
     public void tearDown() {
         inputService.cmdService.contactList.clear();
@@ -32,6 +33,7 @@ class DestroyCmdTests {
         System.setOut(standardOut);
         System.out.println(out);
     }
+
     @Test
     void destroyCmdInvalidDirShouldFail() {
         inputService.init("./src/test/resources/DestroyCmd/destroy_invalid_dir.txt");
@@ -39,6 +41,7 @@ class DestroyCmdTests {
         Assertions.assertFalse(inputService.cmdService.contactList.isEmpty());
         Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
     }
+
     @Test
     void destroyCmdDirShouldOK() {
         inputService.init("./src/test/resources/DestroyCmd/destroy_valid_dir.txt");
