@@ -15,6 +15,8 @@
     <description>svvc</description>
     <properties>
         <java.version>17</java.version>
+        <sonar.exclusions>**/*SvvcApplication.*</sonar.exclusions>
+        <onar.coverage.exclusions>**/*SvvcApplication.*</onar.coverage.exclusions>
     </properties>
     <dependencies>
         <dependency>
@@ -74,6 +76,12 @@
                         </goals>
                     </execution>
                 </executions>
+
+                <configuration>
+                    <excludes>
+                        <exclude>**/*SvvcApplication.*</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -32,7 +32,6 @@ class AddCmdTests {
     }
 
     @Test
-    @Disabled //TODO
     void addCmdNullDirShouldFail() {
         inputService.init("./src/test/resources/AddCmd/add_null_dir.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Dir should not be null or empty."));
@@ -40,7 +39,6 @@ class AddCmdTests {
     }
 
     @Test
-    @Disabled //TODO
     void addCmdEmptyDirShouldFail() {
         inputService.init("./src/test/resources/AddCmd/add_empty_dir.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Dir should not be null or empty."));

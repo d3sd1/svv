@@ -32,18 +32,16 @@ class CreateCmdTests {
     }
 
     @Test
-    @Disabled //TODO
     void createCmdNoDirShouldFail() {
         inputService.init("./src/test/resources/CreateCmd/create_no_dir.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("The directory already exists and nothing has been done"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Dir should not be null or empty."));
         Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
 
     @Test
-    @Disabled //TODO
     void createCmdEmptyDirShouldFail() {
         inputService.init("./src/test/resources/CreateCmd/create_empty_dir.txt");
-        Assertions.assertTrue(outputStreamCaptor.toString().contains("The directory already exists and nothing has been done"));
+        Assertions.assertTrue(outputStreamCaptor.toString().contains("Dir should not be null or empty."));
         Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
 

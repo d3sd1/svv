@@ -60,6 +60,10 @@ public class CmdService {
     }
 
     public void create(String dirName) {
+        if(dirName == null || dirName.isEmpty()) {
+            System.out.println("Dir should not be null or empty.");
+            return;
+        }
         if (this.contactList.containsKey(dirName)) {
             System.out.println("The directory already exists and nothing has been done");
         } else {
@@ -116,6 +120,10 @@ public class CmdService {
     }
 
     public void add(String dirName, String pwd, Contact contact) {
+        if(dirName == null || dirName.isEmpty()) {
+            System.out.println("Dir should not be null or empty.");
+            return;
+        }
         if (!this.contactList.containsKey(dirName)) {
             this.contactList.put(dirName, Address.builder().path(dirName).pwd(pwd).contacts(new ArrayList<>()).build());
             System.out.println("Added dir: " + dirName);
