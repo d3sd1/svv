@@ -1,0 +1,20 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+        "name":"Paco2",
+        "surname": "Jones3"
+    },
+    "pwd": ""
+  },
+   {
+     "cmd": "modify",
+    "dirName": "usemepath",
+    "pwd": "",
+
+    "contact": {
+        "name":"Paco"
+    }
+   }
+ ]

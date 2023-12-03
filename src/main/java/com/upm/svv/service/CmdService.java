@@ -159,6 +159,10 @@ public class CmdService {
     }
 
     public void modify(String dirName, String pwd, Contact contact) {
+        if(dirName == null || dirName.isEmpty()) {
+            System.out.println("the directory does not exist or it has no pwd");
+            return;
+        }
         if (this.contactList.containsKey(dirName)) {
             Address a = this.contactList.get(dirName);
 
@@ -166,13 +170,15 @@ public class CmdService {
                 System.out.println("pwd not right for modifying given dirname");
                 return;
             }
-            Optional<Contact> cOpt = a.getContacts().stream().filter(c1 -> c1.getName().equals(contact.getName()) && c1.getSurname().equals(contact.getSurname())).findFirst();
+            Optional<Contact> cOpt = a.getContacts().stream().filter(c1 -> contact.getName() != null && c1.getName().equals(contact.getName()) && contact.getSurname() != null && c1.getSurname().equals(contact.getSurname())).findFirst();
             if (cOpt.isPresent()) {
+                System.out.println("contact found! begin modifications (if needed)");
                 Contact c = cOpt.get();
                 if (contact.getAdd_tel() != null) {
                     if (c.getTel().size() >= 3) {
                         System.out.println("reached limit for adding tel");
                     } else {
+                        System.out.println("Added tel!");
                         c.getTel().add(contact.getAdd_tel());
                     }
                 }
@@ -180,6 +186,7 @@ public class CmdService {
                     if (c.getEmail().size() >= 3) {
                         System.out.println("reached limit for adding email");
                     } else {
+                        System.out.println("Added email!");
                         c.getEmail().add(contact.getAdd_email());
                     }
                 }
@@ -187,6 +194,7 @@ public class CmdService {
                     if (c.getAddr().size() >= 3) {
                         System.out.println("reached limit for adding addr");
                     } else {
+                        System.out.println("Added addr!");
                         c.getAddr().add(contact.getAdd_addr());
                     }
                 }
@@ -194,6 +202,7 @@ public class CmdService {
                     if (c.getNick().size() >= 3) {
                         System.out.println("reached limit for adding nick");
                     } else {
+                        System.out.println("Added nick!");
                         c.getNick().add(contact.getAdd_nick());
                     }
                 }
@@ -201,6 +210,7 @@ public class CmdService {
                     if (c.getTel().contains(contact.getDel_tel())) {
                         System.out.println("tel was not found for deleting");
                     } else {
+                        System.out.println("Deleted tel!");
                         c.getTel().remove(contact.getDel_tel());
                     }
                 }
@@ -208,6 +218,7 @@ public class CmdService {
                     if (c.getAddr().contains(contact.getDel_addr())) {
                         System.out.println("addr was not found for deleting");
                     } else {
+                        System.out.println("Deleted addr!");
                         c.getAddr().remove(contact.getDel_addr());
                     }
                 }
@@ -215,6 +226,7 @@ public class CmdService {
                     if (c.getEmail().contains(contact.getDel_email())) {
                         System.out.println("email was not found for deleting");
                     } else {
+                        System.out.println("Deleted email!");
                         c.getEmail().remove(contact.getDel_email());
                     }
                 }
@@ -222,6 +234,7 @@ public class CmdService {
                     if (c.getNick().contains(contact.getDel_nick())) {
                         System.out.println("nick was not found for deleting");
                     } else {
+                        System.out.println("Deleted nick!");
                         c.getNick().remove(contact.getDel_nick());
                     }
                 }

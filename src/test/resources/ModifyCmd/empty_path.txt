@@ -1,6 +1,6 @@
 [
    {
      "cmd": "modify",
-    "dirName": "notvaliD"
+    "dirName": ""
    }
  ]

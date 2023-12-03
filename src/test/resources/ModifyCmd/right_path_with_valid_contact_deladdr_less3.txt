@@ -1,0 +1,22 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": {
+        "name":"Paco",
+        "surname": "Jones"
+    },
+    "pwd": ""
+  },
+   {
+    "cmd": "modify",
+    "dirName": "usemepath",
+    "pwd": "",
+
+    "contact": {
+        "name":"Paco",
+        "surname": "Jones",
+         "del_addr": "newtel"
+    }
+   }
+ ]
