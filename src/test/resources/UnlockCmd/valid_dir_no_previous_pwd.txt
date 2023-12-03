@@ -1,0 +1,12 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": null
+  },
+  {
+    "cmd": "unlock",
+    "dirName": "usemepath",
+    "pwd": "1234"
+  }
+]
