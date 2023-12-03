@@ -1,0 +1,13 @@
+[
+  {
+    "cmd": "add",
+    "dirName": "usemepath",
+    "contact": null,
+    "pwd": "1234"
+  },
+  {
+    "cmd": "display",
+    "dirName": "usemepath",
+    "pwd": "iamwrong"
+  }
+]

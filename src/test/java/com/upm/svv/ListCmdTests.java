@@ -34,11 +34,13 @@ class ListCmdTests {
     void listCmdNoDirs() {
         inputService.init("./src/test/resources/ListCmd/list_no_dirs_cmd.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Dirs are empty! Could not list"));
+        Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
     @Test
     void listCmdWithDirs() {
         inputService.init("./src/test/resources/ListCmd/list_with_dirs_cmd.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Found List Path: usemepath"));
+        Assertions.assertTrue(inputService.cmdService.contactList.containsKey("usemepath"));
     }
 
 

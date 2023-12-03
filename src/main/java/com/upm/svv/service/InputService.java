@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class InputService {
-    private final CmdService cmdService;
+    public final CmdService cmdService;
 
     public void init(String file)
     {

@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 public class CmdService {
-    private final HashMap<String, Address> contactList = new HashMap<>();
+    public final HashMap<String, Address> contactList = new HashMap<>();
 
     public void help() {
         System.out.println(
@@ -245,11 +245,11 @@ public class CmdService {
 
     public void display(String dirName, String pwd) {
         if (this.contactList.isEmpty()) {
-            System.out.println("Contacts are empty!");
+            System.out.println("Addresses and contacts are empty!");
         } else if (dirName == null) {
             for (Map.Entry<String, Address> contactMap : this.contactList.entrySet()) {
                 if (contactMap.getValue().getPwd() != null) {
-                    System.out.println(contactMap.getKey() + "is protected by pwd!");
+                    System.out.println(contactMap.getKey() + " is protected by pwd!");
                 } else {
                     System.out.println(contactMap.getKey() + " : " + contactMap.getValue());
                 }
@@ -257,7 +257,7 @@ public class CmdService {
         } else {
             if (!this.contactList.containsKey(dirName)) {
                 System.out.println("Invalid dir: " + dirName);
-            } else if (!this.contactList.get(dirName).getPwd().equals(pwd)) {
+            } else if (this.contactList.get(dirName).getPwd() != null && !this.contactList.get(dirName).getPwd().equals(pwd)) {
                 System.out.println("Invalid password for dir " + dirName);
             } else {
                 System.out.println(dirName + " : " + this.contactList.get(dirName));

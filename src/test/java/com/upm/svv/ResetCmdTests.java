@@ -34,11 +34,13 @@ class ResetCmdTests {
     void resetCmdNoDirs() {
         inputService.init("./src/test/resources/ResetCmd/reset_with_no_dirs.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("Dirs are empty! Could not reset."));
+        Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
     @Test
     void resetCmdWithDirs() {
         inputService.init("./src/test/resources/ResetCmd/reset_with_dirs.txt");
         Assertions.assertTrue(outputStreamCaptor.toString().contains("All directories removed with reset."));
+        Assertions.assertTrue(inputService.cmdService.contactList.isEmpty());
     }
 
 
